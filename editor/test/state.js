@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { expect } from 'chai';
-import { values } from 'lodash';
+import { values, noop } from 'lodash';
 import deepFreeze from 'deep-freeze';
 
 /**
@@ -30,7 +30,7 @@ import {
 describe( 'state', () => {
 	describe( 'editor()', () => {
 		before( () => {
-			registerBlockType( 'core/test-block', {} );
+			registerBlockType( 'core/test-block', { save: noop } );
 		} );
 
 		after( () => {
