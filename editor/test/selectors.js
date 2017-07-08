@@ -44,7 +44,7 @@ import {
 	isFirstMultiSelectedBlock,
 	isBlockHovered,
 	getBlockFocus,
-	isTypingInBlock,
+	isTypingInEditor,
 	getBlockInsertionPoint,
 	isBlockInsertionPointVisible,
 	isSavingPost,
@@ -971,29 +971,21 @@ describe( 'selectors', () => {
 		} );
 	} );
 
-	describe( 'isTypingInBlock', () => {
+	describe( 'isTypingInEditor', () => {
 		it( 'should return the isTyping flag if the block is selected', () => {
 			const state = {
-				selectedBlock: {
-					uid: 123,
-					typing: true,
-				},
-				multiSelectedBlocks: {},
+				isTyping: true,
 			};
 
-			expect( isTypingInBlock( state, 123 ) ).to.be.true();
+			expect( isTypingInEditor( state ) ).to.be.true();
 		} );
 
 		it( 'should return false if the block is not selected', () => {
 			const state = {
-				selectedBlock: {
-					uid: 123,
-					typing: true,
-				},
-				multiSelectedBlocks: {},
+				isTyping: false,
 			};
 
-			expect( isTypingInBlock( state, 23 ) ).to.be.false();
+			expect( isTypingInEditor( state ) ).to.be.false();
 		} );
 	} );
 
@@ -1003,7 +995,6 @@ describe( 'selectors', () => {
 				mode: 'visual',
 				selectedBlock: {
 					uid: 2,
-					typing: true,
 				},
 				multiSelectedBlocks: {},
 				editor: {
@@ -1051,7 +1042,6 @@ describe( 'selectors', () => {
 				mode: 'text',
 				selectedBlock: {
 					uid: 2,
-					typing: true,
 				},
 				multiSelectedBlocks: {},
 				editor: {
